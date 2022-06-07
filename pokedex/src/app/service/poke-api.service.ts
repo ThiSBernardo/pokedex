@@ -10,15 +10,15 @@ import { map, tap } from "rxjs/operators";
 })
 export class PokeApiService {
 
-  private url: string = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=100';
+  private resource: string = 'https://pokeapi.co/api/v2/pokemon';
 
   constructor(
     private http: HttpClient
   ) { }
 
-  get apiListAllPokemons():Observable<any>{
-    return this.http.get<any>(this.url).pipe(
-      tap( res => res ),
+   apiListAllPokemons(page:number = 0):Observable<any>{
+     const url = `${this.resource}?offset=${page}&limit=100`
+    return this.http.get<any>(url).pipe(
       tap( res => {
         res.results.map( (resPokemons: any) => {
 
@@ -32,10 +32,7 @@ export class PokeApiService {
   }
 
   public apiGetPokemon( url: string ):Observable<any>{
-    return this.http.get<any>( url ).pipe(
-      map(
-        res => res
-      )
-    )
+    return this.http.get<any>( url )
+
   }
 }

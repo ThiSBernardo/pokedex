@@ -8,18 +8,20 @@ import { PokeHeaderComponent } from './poke-header/poke-header.component';
 import { PokeSearchComponent } from './poke-search/poke-search.component';
 import { PokeListComponent } from './poke-list/poke-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({
   declarations: [
     PokeHeaderComponent,
     PokeSearchComponent,
-    PokeListComponent
+    PokeListComponent,
+    FilterPipe
   ],
   exports: [
     PokeHeaderComponent,
     PokeSearchComponent,
-    PokeListComponent
+    PokeListComponent,
   ],
   imports: [
     CommonModule,

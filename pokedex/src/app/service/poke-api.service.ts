@@ -16,8 +16,8 @@ export class PokeApiService {
     private http: HttpClient
   ) { }
 
-   apiListAllPokemons(page:number = 0):Observable<any>{
-     const url = `${this.resource}?offset=${page}&limit=100`
+   public apiListAllPokemons():Observable<any>{
+     const url = `${this.resource}?offset=0&limit=1500`
     return this.http.get<any>(url).pipe(
       tap( res => {
         res.results.map( (resPokemons: any) => {

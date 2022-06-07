@@ -8,8 +8,9 @@ import { PokeApiService } from 'src/app/service/poke-api.service';
 })
 export class PokeListComponent implements OnInit {
 
-  private setAllPokemons: any;
-  public getAllPokemons: any;
+  public pokemons: any;
+  public term: string;
+  public currentPage: number = 0;
 
   public apiError: boolean = false;
 
@@ -17,23 +18,16 @@ export class PokeListComponent implements OnInit {
     private pokeApiService: PokeApiService
   ) { }
 
-  ngOnInit(): void {
-    this.pokeApiService.apiListAllPokemons(0).subscribe(
-      res => {
-        this.setAllPokemons = res.results;
-        this.getAllPokemons = this.setAllPokemons;
-      },
-      error => {
-        this.apiError = true;
-      }
-    );
+  public ngOnInit(): void {
+    this.pokeApiService.apiListAllPokemons()
+      .subscribe(res => this.pokemons = res.results);
   }
 
-  public getSearch(value: string){
-    const filter = this.setAllPokemons.filter( (res: any ) => {
-      return !res.name.indexOf(value.toLowerCase());
-    });
+  public onSearch(value: string) {
+    this.term = value
+  }
 
-    this.getAllPokemons = filter;
+  public onPage(page: number){
+    this.currentPage = page
   }
 }

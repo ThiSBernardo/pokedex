@@ -1,18 +1,10 @@
 <form>
-  <input type="text" #input (keyup)="search(input.value)" placeholder="Buscar Pokemon...">
+  <input type="text" #input (keyup)="onSearch(input.value)" placeholder="Buscar Pokemon...">
   <img src="assets/icons/search.svg" alt="Buscar Pokemon">
 
   <a [routerLink]="['']" class="btn btn__terceira">
     Pokemon Aleatório
   </a>
   <!-- Começo do código da tabela -->
-<tbody>
-  <tr *ngFor="let pokemon of pokemons | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index">
-      <td>{{i}}</td>
-      <td>{{pokemon.nome}}</td>
-      <td>{{pokemon.status}}</td>
-  </tr>
-</tbody>
-<pagination-controls (pageChange)="onChangePage($event)"></pagination-controls>
-<!-- Restante do código -->
+
 </form>
